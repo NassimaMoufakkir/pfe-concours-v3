@@ -50,4 +50,9 @@ public class EtudiantServiceImpl implements EtudiantService {
 		return 0;
 	}
 
+	@Override
+	public List<Etudiant> findByInscriptionsConcoursReference(String reference) {
+		return etudiantDao.findByInscriptionsConcoursReference(reference);
+	}
+
 }

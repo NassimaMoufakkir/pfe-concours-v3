@@ -50,9 +50,9 @@ public class InscriptionServiceImpl implements InscriptionService {
 		}
 
 		else {
+			inscription.setDateInscription(new Date());
 			inscription.setConcours(loadedConcours);
 			inscription.setEtudiant(loadedEtudiant);
-			inscription.setDateInscription(new Date());
 			inscriptionDao.save(inscription);
 			return 1;
 
@@ -74,9 +74,12 @@ public class InscriptionServiceImpl implements InscriptionService {
 	@Override
 	public int save(Etudiant etudiant, List<Inscription> inscriptions) {
 		for (Inscription inscription : inscriptions) {
-			inscription.setEtudiant(etudiant);
-			inscriptionDao.save(inscription);
-
+			Concours concours = concoursService.findByReference(inscription.getConcours().getReference());
+			if(concours != null) {
+				inscription.setConcours(concours);
+				inscription.setEtudiant(etudiant);
+				inscriptionDao.save(inscription);
+			}
 		}
 		return 1;
 	}

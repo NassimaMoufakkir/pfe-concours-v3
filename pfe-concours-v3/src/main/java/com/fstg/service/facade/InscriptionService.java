@@ -18,5 +18,6 @@ public interface InscriptionService {
 	public int save(Concours concours, List<Inscription> inscriptions);
 
 	public int save(Etudiant etudiant, List<Inscription> inscriptions);
+	
 
 }

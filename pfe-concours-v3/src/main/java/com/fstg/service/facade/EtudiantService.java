@@ -10,4 +10,7 @@ public interface EtudiantService {
 	public List<Etudiant> findAll();
 
 	public int save(Etudiant etudiant);
+	
+	public List<Etudiant> findByInscriptionsConcoursReference(String reference);
+
 }

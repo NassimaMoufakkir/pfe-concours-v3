@@ -20,7 +20,7 @@ public class Inscription implements Serializable {
 	private Long id;
 	private String reference;
 	@Temporal(TemporalType.DATE)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date dateInscription;
 	@ManyToOne
 	private Concours concours;

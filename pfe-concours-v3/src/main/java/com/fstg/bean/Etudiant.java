@@ -29,7 +29,7 @@ public class Etudiant implements Serializable {
 	private String email;
 	private String telephone;
 	@Temporal(TemporalType.DATE)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date dateNaissance;
 	private double noteS1;
 	private double noteS2;

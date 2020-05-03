@@ -40,6 +40,8 @@ public class Etudiant implements Serializable {
 	@OneToMany(mappedBy = "etudiant")
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private List<Inscription> inscriptions;
+	
+	private String imageBac;
 
 	@Override
 	public int hashCode() {
@@ -137,9 +139,11 @@ public class Etudiant implements Serializable {
 		return true;
 	}
 
+	
+
 	public Etudiant(Long id, String cne, String cin, String nom, String prenom, String email, String telephone,
 			Date dateNaissance, double noteS1, double noteS2, double noteS3, double moyenneBac, TypeDiplome typeDiplome,
-			List<Inscription> inscriptions) {
+			List<Inscription> inscriptions, String imageBac) {
 		super();
 		this.id = id;
 		this.cne = cne;
@@ -155,6 +159,7 @@ public class Etudiant implements Serializable {
 		this.moyenneBac = moyenneBac;
 		this.typeDiplome = typeDiplome;
 		this.inscriptions = inscriptions;
+		this.imageBac = imageBac;
 	}
 
 	public Etudiant() {
@@ -274,4 +279,13 @@ public class Etudiant implements Serializable {
 		this.inscriptions = inscriptions;
 	}
 
+	public String getImageBac() {
+		return imageBac;
+	}
+
+	public void setImageBac(String imageBac) {
+		this.imageBac = imageBac;
+	}
+
+	
 }

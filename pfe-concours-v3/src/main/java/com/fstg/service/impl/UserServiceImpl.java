@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private JavaMailSender javaMailSender;
 
-	void sendEmailWithAttachment(String to,String subject,String message) throws MessagingException, IOException {
+	void sendEmailWithAttachment(String to, String subject, String message) throws MessagingException, IOException {
 
 		MimeMessage msg = javaMailSender.createMimeMessage();
 
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 		// helper.setText("Check attachment for image!");
 
 		// true = text/html
-		helper.setText("<h1>"+message+"!</h1>", true);
+		helper.setText("<h1>" + message + "</h1>", true);
 
 		// hard coded a file path
 		// FileSystemResource file = new FileSystemResource(new
@@ -60,13 +60,15 @@ public class UserServiceImpl implements UserService {
 			user.setPassword(PasswordRandomUtil.generateRandomString(8));
 
 			try {
-				sendEmailWithAttachment(user.getEmail(), "awedaaa mamaaaa", "ha pass mamaa rah generenahe lik "+user.getPassword());
+				sendEmailWithAttachment(user.getEmail(), "Création de votre compte FSTG Concours",
+						"Votre login : " + user.getLogin() + "<br> Votre mot de passe : "
+								+ user.getPassword());
 			} catch (MessagingException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}//("ha login " + user.getLogin() + " o ha pass  " + user.getPassword());
+			} // ("ha login " + user.getLogin() + " o ha pass " + user.getPassword());
 			user.setPassword(HashUtil.hash(user.getPassword()));
-			user.setNbrTentatifRestant(5);
+			user.setNbrTentativeRestant(5);
 			userDao.save(user);
 			return 1;
 		}
@@ -78,8 +80,8 @@ public class UserServiceImpl implements UserService {
 		if (loadedUser == null) {
 			return -1;
 		} else if (!loadedUser.getPassword().equalsIgnoreCase(HashUtil.hash(user.getPassword()))) {
-			loadedUser.setNbrTentatifRestant(loadedUser.getNbrTentatifRestant() - 1);
-			if (loadedUser.getNbrTentatifRestant() == 0) {
+			loadedUser.setNbrTentativeRestant(loadedUser.getNbrTentativeRestant() - 1);
+			if (loadedUser.getNbrTentativeRestant() == 0) {
 				loadedUser.setBloqued(true);
 				loadedUser.setDateBloquage(new Date());
 				userDao.save(loadedUser);

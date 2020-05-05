@@ -18,7 +18,7 @@ public class User implements Serializable {
 	private String login;
 	private String password;
 	private boolean bloqued;
-	private int nbrTentatifRestant;
+	private int nbrTentativeRestant;
 	private String email;
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	private Date dateBloquage;
@@ -55,12 +55,12 @@ public class User implements Serializable {
 		this.bloqued = bloqued;
 	}
 
-	public int getNbrTentatifRestant() {
-		return nbrTentatifRestant;
+	public int getNbrTentativeRestant() {
+		return nbrTentativeRestant;
 	}
 
-	public void setNbrTentatifRestant(int nbrTentatifRestant) {
-		this.nbrTentatifRestant = nbrTentatifRestant;
+	public void setNbrTentativeRestant(int nbrTentativeRestant) {
+		this.nbrTentativeRestant = nbrTentativeRestant;
 	}
 
 	public Date getDateBloquage() {

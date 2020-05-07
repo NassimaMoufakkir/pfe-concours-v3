@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
 			try {
 				sendEmailWithAttachment(user.getEmail(), "Création de votre compte FSTG Concours", "Bonjour/Bonsoir "
-						+ user.getNom() + " " + user.getPrénom()
+						+ user.getNom() + " " + user.getPrenom()
 						+ ". <br> Votre compte FSTG Concours a été créé avec succès. <br> Pour effectuer votre préinscription, "
 						+ "veuillez vous connecter. <br> Voici vos coordonnées :" + "<br> Votre login (CNE) : "
 						+ user.getLogin() + "<br> Votre mot de passe : " + user.getPassword() + ".");

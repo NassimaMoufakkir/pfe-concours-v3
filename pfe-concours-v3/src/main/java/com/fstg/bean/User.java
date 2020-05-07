@@ -17,7 +17,7 @@ public class User implements Serializable {
 	private Long id;
 	private String login;
 	private String nom;
-	private String prénom;
+	private String prenom;
 	private String password;
 	private boolean bloqued;
 	private int nbrTentativeRestant;
@@ -49,12 +49,12 @@ public class User implements Serializable {
 		this.nom = nom;
 	}
 
-	public String getPrénom() {
-		return prénom;
+	public String getPrenom() {
+		return prenom;
 	}
 
-	public void setPrénom(String prénom) {
-		this.prénom = prénom;
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
 	public String getPassword() {

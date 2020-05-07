@@ -60,9 +60,11 @@ public class UserServiceImpl implements UserService {
 			user.setPassword(PasswordRandomUtil.generateRandomString(8));
 
 			try {
-				sendEmailWithAttachment(user.getEmail(), "Création de votre compte FSTG Concours",
-						"Votre login : " + user.getLogin() + "<br> Votre mot de passe : "
-								+ user.getPassword());
+				sendEmailWithAttachment(user.getEmail(), "Création de votre compte FSTG Concours", "Bonjour/Bonsoir "
+						+ user.getNom() + " " + user.getPrénom()
+						+ ". <br> Votre compte FSTG Concours a été créé avec succès. <br> Pour effectuer votre préinscription, "
+						+ "veuillez vous connecter. <br> Voici vos coordonnées :" + "<br> Votre login (CNE) : "
+						+ user.getLogin() + "<br> Votre mot de passe : " + user.getPassword() + ".");
 			} catch (MessagingException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-@CrossOrigin(origins = "http://localhost:4200")
+import com.fstg.bean.Etudiant;
+
+@CrossOrigin(origins = { "http://localhost:4200" })
 @RequestMapping("pfe-concours-v3-api/file-uploader")
+
 @RestController
 public class FileUploader {
 
@@ -24,14 +27,13 @@ public class FileUploader {
 	private final Path rootLocation = Paths.get("C:/Users/hp/Desktop/files");
 
 	@PostMapping("/savefile")
-	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
+	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file, Etudiant etudiant) {
 		String message;
 		try {
 			try {
-
-				Files.copy(file.getInputStream(), this.rootLocation.resolve("file_name.pdf"));
+				Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getResource().getFilename() + ".png"));
+				//Files.copy(file.getInputStream(), this.rootLocation.resolve(etudiant.getCne() + ".png"));
 			} catch (Exception e) {
-
 				throw new RuntimeException("FAIL!");
 			}
 			files.add(file.getOriginalFilename());
@@ -43,5 +45,4 @@ public class FileUploader {
 			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
 		}
 	}
-
 }

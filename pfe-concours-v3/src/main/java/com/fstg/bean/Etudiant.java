@@ -1,5 +1,6 @@
 package com.fstg.bean;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Etudiant implements Serializable {
 	private String email;
 	private String telephone;
 	@Temporal(TemporalType.DATE)
-	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date dateNaissance;
 	private double noteS1;
 	private double noteS2;
@@ -40,8 +41,10 @@ public class Etudiant implements Serializable {
 	@OneToMany(mappedBy = "etudiant")
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private List<Inscription> inscriptions;
-	
+
 	private String imageBac;
+
+	private File image;
 
 	@Override
 	public int hashCode() {
@@ -138,8 +141,6 @@ public class Etudiant implements Serializable {
 			return false;
 		return true;
 	}
-
-	
 
 	public Etudiant(Long id, String cne, String cin, String nom, String prenom, String email, String telephone,
 			Date dateNaissance, double noteS1, double noteS2, double noteS3, double moyenneBac, TypeDiplome typeDiplome,
@@ -287,5 +288,34 @@ public class Etudiant implements Serializable {
 		this.imageBac = imageBac;
 	}
 
-	
+	public File getImage() {
+		return image;
+	}
+
+	public void setImage(File image) {
+		this.image = image;
+	}
+
+	public Etudiant(Long id, String cne, String cin, String nom, String prenom, String email, String telephone,
+			Date dateNaissance, double noteS1, double noteS2, double noteS3, double moyenneBac, TypeDiplome typeDiplome,
+			List<Inscription> inscriptions, String imageBac, File image) {
+		super();
+		this.id = id;
+		this.cne = cne;
+		this.cin = cin;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.dateNaissance = dateNaissance;
+		this.noteS1 = noteS1;
+		this.noteS2 = noteS2;
+		this.noteS3 = noteS3;
+		this.moyenneBac = moyenneBac;
+		this.typeDiplome = typeDiplome;
+		this.inscriptions = inscriptions;
+		this.imageBac = imageBac;
+		this.image = image;
+	}
+
 }

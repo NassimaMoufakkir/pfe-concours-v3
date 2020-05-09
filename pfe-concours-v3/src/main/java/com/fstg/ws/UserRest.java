@@ -21,6 +21,7 @@ import com.fstg.service.facade.UserService;
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RequestMapping("pfe-concours-v3-api/user")
 public class UserRest {
+
 	@Autowired
 	private UserService userService;
 

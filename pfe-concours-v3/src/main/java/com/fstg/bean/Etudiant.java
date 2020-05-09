@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -41,10 +40,10 @@ public class Etudiant implements Serializable {
 	@OneToMany(mappedBy = "etudiant")
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private List<Inscription> inscriptions;
-
-	private String imageBac;
-
-	private File image;
+	private File imageBac;
+	private File imageS1;
+	private File imageS2;
+	private File imageS3;
 
 	@Override
 	public int hashCode() {
@@ -144,7 +143,7 @@ public class Etudiant implements Serializable {
 
 	public Etudiant(Long id, String cne, String cin, String nom, String prenom, String email, String telephone,
 			Date dateNaissance, double noteS1, double noteS2, double noteS3, double moyenneBac, TypeDiplome typeDiplome,
-			List<Inscription> inscriptions, String imageBac) {
+			List<Inscription> inscriptions, File imageBac, File imageS1, File imageS2, File imageS3) {
 		super();
 		this.id = id;
 		this.cne = cne;
@@ -160,6 +159,37 @@ public class Etudiant implements Serializable {
 		this.moyenneBac = moyenneBac;
 		this.typeDiplome = typeDiplome;
 		this.inscriptions = inscriptions;
+		this.imageBac = imageBac;
+		this.imageS1 = imageS1;
+		this.imageS2 = imageS2;
+		this.imageS3 = imageS3;
+	}
+
+	public File getImageS1() {
+		return imageS1;
+	}
+
+	public void setImageS1(File imageS1) {
+		this.imageS1 = imageS1;
+	}
+
+	public File getImageS2() {
+		return imageS2;
+	}
+
+	public void setImageS2(File imageS2) {
+		this.imageS2 = imageS2;
+	}
+
+	public File getImageS3() {
+		return imageS3;
+	}
+
+	public void setImageS3(File imageS3) {
+		this.imageS3 = imageS3;
+	}
+
+	public void setImageBac(File imageBac) {
 		this.imageBac = imageBac;
 	}
 
@@ -280,42 +310,8 @@ public class Etudiant implements Serializable {
 		this.inscriptions = inscriptions;
 	}
 
-	public String getImageBac() {
+	public File getImageBac() {
 		return imageBac;
-	}
-
-	public void setImageBac(String imageBac) {
-		this.imageBac = imageBac;
-	}
-
-	public File getImage() {
-		return image;
-	}
-
-	public void setImage(File image) {
-		this.image = image;
-	}
-
-	public Etudiant(Long id, String cne, String cin, String nom, String prenom, String email, String telephone,
-			Date dateNaissance, double noteS1, double noteS2, double noteS3, double moyenneBac, TypeDiplome typeDiplome,
-			List<Inscription> inscriptions, String imageBac, File image) {
-		super();
-		this.id = id;
-		this.cne = cne;
-		this.cin = cin;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.dateNaissance = dateNaissance;
-		this.noteS1 = noteS1;
-		this.noteS2 = noteS2;
-		this.noteS3 = noteS3;
-		this.moyenneBac = moyenneBac;
-		this.typeDiplome = typeDiplome;
-		this.inscriptions = inscriptions;
-		this.imageBac = imageBac;
-		this.image = image;
 	}
 
 }

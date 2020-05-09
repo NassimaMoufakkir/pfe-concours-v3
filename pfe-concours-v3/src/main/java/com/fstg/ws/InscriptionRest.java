@@ -20,6 +20,7 @@ import com.fstg.service.facade.InscriptionService;
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RequestMapping("pfe-concours-v3-api/inscription")
 public class InscriptionRest {
+
 	@Autowired
 	private InscriptionService inscriptionService;
 

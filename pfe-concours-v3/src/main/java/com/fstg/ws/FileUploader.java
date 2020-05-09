@@ -19,11 +19,11 @@ import com.fstg.bean.Etudiant;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RequestMapping("pfe-concours-v3-api/file-uploader")
-
 @RestController
 public class FileUploader {
 
 	List<String> files = new ArrayList<String>();
+	//Path to save the file
 	private final Path rootLocation = Paths.get("C:/Users/hp/Desktop/files");
 
 	@PostMapping("/savefile")

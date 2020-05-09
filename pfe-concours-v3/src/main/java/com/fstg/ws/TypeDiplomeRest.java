@@ -18,6 +18,7 @@ import com.fstg.service.facade.TypeDiplomeService;
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RequestMapping("pfe-concours-v3-api/type-diplome")
 public class TypeDiplomeRest {
+
 	@Autowired
 	private TypeDiplomeService typeDiplomeService;
 

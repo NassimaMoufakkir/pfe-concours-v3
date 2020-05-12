@@ -1,11 +1,17 @@
 package com.fstg.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 public class TypeDiplome implements Serializable {
@@ -13,6 +19,10 @@ public class TypeDiplome implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String libelle;
+	
+	@OneToMany(mappedBy = "typeDiplome")
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private List<ConfigConcours> configConcourss = new ArrayList<ConfigConcours>();
 
 	@Override
 	public int hashCode() {
@@ -22,6 +32,25 @@ public class TypeDiplome implements Serializable {
 		result = prime * result + ((libelle == null) ? 0 : libelle.hashCode());
 		return result;
 	}
+
+	
+	public List<ConfigConcours> getConfigConcourss() {
+		return configConcourss;
+	}
+
+
+	public void setConfigConcourss(List<ConfigConcours> configConcourss) {
+		this.configConcourss = configConcourss;
+	}
+
+
+	public TypeDiplome(Long id, String libelle, List<ConfigConcours> configConcourss) {
+		super();
+		this.id = id;
+		this.libelle = libelle;
+		this.configConcourss = configConcourss;
+	}
+
 
 	@Override
 	public boolean equals(Object obj) {

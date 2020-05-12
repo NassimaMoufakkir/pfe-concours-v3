@@ -2,12 +2,14 @@ package com.fstg.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fstg.bean.TypeDiplome;
 import com.fstg.dao.TypeDiplomeDao;
-
+import com.fstg.service.facade.ConfigConcoursService;
 import com.fstg.service.facade.TypeDiplomeService;
 
 @Service
@@ -15,14 +17,12 @@ public class TypeDiplomeServiceImpl implements TypeDiplomeService {
 	@Autowired
 	private TypeDiplomeDao typeDiplomeDao;
 
+	@Autowired
+	private ConfigConcoursService configConcoursService;
+
 	@Override
 	public TypeDiplome findByLibelle(String libelle) {
 		return typeDiplomeDao.findByLibelle(libelle);
-	}
-
-	@Override
-	public List<TypeDiplome> findAll() {
-		return typeDiplomeDao.findAll();
 	}
 
 	@Override
@@ -32,8 +32,23 @@ public class TypeDiplomeServiceImpl implements TypeDiplomeService {
 			return -1;
 		} else {
 			typeDiplomeDao.save(typeDiplome);
+			// Update
+			configConcoursService.save(typeDiplome, typeDiplome.getConfigConcourss());
 			return 1;
 		}
+	}
+
+	@Override
+	@Transactional
+	public int deleteByLibelle(String libelle) {
+		int resConfigConcours = configConcoursService.deleteByTypeDiplomeLibelle(libelle);
+		int resTypeDiplome = typeDiplomeDao.deleteByLibelle(libelle);
+		return resConfigConcours * resTypeDiplome;
+	}
+
+	@Override
+	public List<TypeDiplome> findAll() {
+		return typeDiplomeDao.findAll();
 	}
 
 }

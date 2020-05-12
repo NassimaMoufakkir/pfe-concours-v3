@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,5 +37,16 @@ public class ConcoursRest {
 	public int save(@RequestBody Concours concours) {
 		return concoursService.save(concours);
 	}
+	
+	@GetMapping("/annee/{annee}")
+	public List<Concours> findByAnnee(@PathVariable int annee) {
+		return concoursService.findByAnnee(annee);
+	}
+
+	@DeleteMapping("/reference/{reference}")
+	public int deleteByReference(@PathVariable String reference) {
+		return concoursService.deleteByReference(reference);
+	}
+
 
 }

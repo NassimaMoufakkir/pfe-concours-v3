@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 		// helper.setText("Check attachment for image!");
 
 		// true = text/html
-		helper.setText(message, true);
+		helper.setText("<h1>" + message + "</h1>", true);
 
 		// hard coded a file path
 		// FileSystemResource file = new FileSystemResource(new

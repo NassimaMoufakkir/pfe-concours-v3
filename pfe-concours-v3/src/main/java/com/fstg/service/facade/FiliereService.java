@@ -5,6 +5,7 @@ import java.util.List;
 import com.fstg.bean.Departement;
 import com.fstg.bean.Filiere;
 
+
 public interface FiliereService {
 	public Filiere findByLibelle(String reference);
 

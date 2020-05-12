@@ -11,4 +11,8 @@ public interface ConcoursService {
 
 	public int save(Concours concours);
 
+	public List<Concours> findByAnnee(int annee);
+
+	public int deleteByReference(String reference);
+
 }

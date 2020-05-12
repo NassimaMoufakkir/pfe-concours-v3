@@ -1,6 +1,7 @@
 package com.fstg.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,8 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-//hello//
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 public class Concours implements Serializable {
 
@@ -23,24 +25,33 @@ public class Concours implements Serializable {
 	private Long id;
 	private String reference;
 	private String description;
+
+	private int annee;
+
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date dateConcours;
 	@OneToMany(mappedBy = "concours")
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private List<Inscription> inscriptions;
+	@OneToMany(mappedBy = "concours")
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private List<ConfigConcours> configConcourss = new ArrayList<ConfigConcours>();
 
 	public Concours() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Concours(Long id, String reference, String description, Date dateConcours) {
+	public Concours(Long id, String reference, String description, Date dateConcours, List<Inscription> inscriptions,
+			List<ConfigConcours> configConcourss) {
 		super();
 		this.id = id;
 		this.reference = reference;
 		this.description = description;
 		this.dateConcours = dateConcours;
+		this.inscriptions = inscriptions;
+		this.configConcourss = configConcourss;
 	}
 
 	@Override
@@ -124,6 +135,14 @@ public class Concours implements Serializable {
 
 	public void setDateConcours(Date dateConcours) {
 		this.dateConcours = dateConcours;
+	}
+
+	public List<ConfigConcours> getConfigConcourss() {
+		return configConcourss;
+	}
+
+	public void setConfigConcourss(List<ConfigConcours> configConcourss) {
+		this.configConcourss = configConcourss;
 	}
 
 }

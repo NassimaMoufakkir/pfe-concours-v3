@@ -9,4 +9,5 @@ import com.fstg.bean.TypeDiplome;
 public interface TypeDiplomeDao extends JpaRepository<TypeDiplome, Long> {
 	public TypeDiplome findByLibelle(String libelle);
 
+	public int deleteByLibelle(String libelle);
 }

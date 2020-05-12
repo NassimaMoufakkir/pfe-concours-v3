@@ -5,12 +5,14 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.fstg.bean.Departement;
 import com.fstg.bean.Filiere;
 import com.fstg.dao.FiliereDao;
 import com.fstg.service.facade.FiliereService;
 
+@Service
 public class FiliereServiceImpl implements FiliereService {
 
 	@Autowired

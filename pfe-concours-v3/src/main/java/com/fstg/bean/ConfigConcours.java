@@ -16,9 +16,9 @@ public class ConfigConcours implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private double noteMin;
-	private double nbreMaxAdmis;
-	private double nbreMaxEcritAdmis;
-	private double nbreMaxOraleAdmis;
+	private int nbreMaxAdmis;
+	private int nbreMaxEcritAdmis;
+	private int nbreMaxOraleAdmis;
 	@ManyToOne
 	private TypeDiplome typeDiplome;
 	@ManyToOne
@@ -28,8 +28,8 @@ public class ConfigConcours implements Serializable {
 		super();
 	}
 
-	public ConfigConcours(Long id, double noteMin, double nbreMaxAdmis, double nbreMaxEcritAdmis,
-			double nbreMaxOraleAdmis, TypeDiplome typeDiplome, Concours concours) {
+	public ConfigConcours(Long id, double noteMin, int nbreMaxAdmis, int nbreMaxEcritAdmis,
+			int nbreMaxOraleAdmis, TypeDiplome typeDiplome, Concours concours) {
 		super();
 		this.id = id;
 		this.noteMin = noteMin;
@@ -68,7 +68,7 @@ public class ConfigConcours implements Serializable {
 		return nbreMaxAdmis;
 	}
 
-	public void setNbreMaxAdmis(double nbreMaxAdmis) {
+	public void setNbreMaxAdmis(int nbreMaxAdmis) {
 		this.nbreMaxAdmis = nbreMaxAdmis;
 	}
 
@@ -76,7 +76,7 @@ public class ConfigConcours implements Serializable {
 		return nbreMaxEcritAdmis;
 	}
 
-	public void setNbreMaxEcritAdmis(double nbreMaxEcritAdmis) {
+	public void setNbreMaxEcritAdmis(int nbreMaxEcritAdmis) {
 		this.nbreMaxEcritAdmis = nbreMaxEcritAdmis;
 	}
 
@@ -84,7 +84,7 @@ public class ConfigConcours implements Serializable {
 		return nbreMaxOraleAdmis;
 	}
 
-	public void setNbreMaxOraleAdmis(double nbreMaxOraleAdmis) {
+	public void setNbreMaxOraleAdmis(int nbreMaxOraleAdmis) {
 		this.nbreMaxOraleAdmis = nbreMaxOraleAdmis;
 	}
 

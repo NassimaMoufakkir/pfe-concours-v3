@@ -26,7 +26,7 @@ public class FiliereRest {
 		return filiereService.findByLibelle(reference);
 	}
 
-	@DeleteMapping("/departement/reference/{reference}")
+	@GetMapping("/departement/reference/{reference}")
 	public List<Filiere> findByDepartementRefrence(@PathVariable String reference) {
 		return filiereService.findByDepartementRefrence(reference);
 	}

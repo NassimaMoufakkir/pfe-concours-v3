@@ -34,6 +34,7 @@ public class Etudiant implements Serializable {
 	private double noteS1;
 	private double noteS2;
 	private double noteS3;
+	private double noteS4;
 	private double moyenneBac;
 	@ManyToOne
 	private TypeDiplome typeDiplome;
@@ -44,106 +45,17 @@ public class Etudiant implements Serializable {
 	private File imageS1;
 	private File imageS2;
 	private File imageS3;
+	private File imageS4;
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cin == null) ? 0 : cin.hashCode());
-		result = prime * result + ((cne == null) ? 0 : cne.hashCode());
-		result = prime * result + ((dateNaissance == null) ? 0 : dateNaissance.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((inscriptions == null) ? 0 : inscriptions.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(moyenneBac);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
-		temp = Double.doubleToLongBits(noteS1);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(noteS2);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(noteS3);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result + ((telephone == null) ? 0 : telephone.hashCode());
-		result = prime * result + ((typeDiplome == null) ? 0 : typeDiplome.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Etudiant other = (Etudiant) obj;
-		if (cin == null) {
-			if (other.cin != null)
-				return false;
-		} else if (!cin.equals(other.cin))
-			return false;
-		if (cne == null) {
-			if (other.cne != null)
-				return false;
-		} else if (!cne.equals(other.cne))
-			return false;
-		if (dateNaissance == null) {
-			if (other.dateNaissance != null)
-				return false;
-		} else if (!dateNaissance.equals(other.dateNaissance))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (inscriptions == null) {
-			if (other.inscriptions != null)
-				return false;
-		} else if (!inscriptions.equals(other.inscriptions))
-			return false;
-		if (Double.doubleToLongBits(moyenneBac) != Double.doubleToLongBits(other.moyenneBac))
-			return false;
-		if (nom == null) {
-			if (other.nom != null)
-				return false;
-		} else if (!nom.equals(other.nom))
-			return false;
-		if (Double.doubleToLongBits(noteS1) != Double.doubleToLongBits(other.noteS1))
-			return false;
-		if (Double.doubleToLongBits(noteS2) != Double.doubleToLongBits(other.noteS2))
-			return false;
-		if (Double.doubleToLongBits(noteS3) != Double.doubleToLongBits(other.noteS3))
-			return false;
-		if (prenom == null) {
-			if (other.prenom != null)
-				return false;
-		} else if (!prenom.equals(other.prenom))
-			return false;
-		if (telephone == null) {
-			if (other.telephone != null)
-				return false;
-		} else if (!telephone.equals(other.telephone))
-			return false;
-		if (typeDiplome == null) {
-			if (other.typeDiplome != null)
-				return false;
-		} else if (!typeDiplome.equals(other.typeDiplome))
-			return false;
-		return true;
+	public Etudiant() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public Etudiant(Long id, String cne, String cin, String nom, String prenom, String email, String telephone,
-			Date dateNaissance, double noteS1, double noteS2, double noteS3, double moyenneBac, TypeDiplome typeDiplome,
-			List<Inscription> inscriptions, File imageBac, File imageS1, File imageS2, File imageS3) {
+			Date dateNaissance, double noteS1, double noteS2, double noteS3, double noteS4, double moyenneBac,
+			TypeDiplome typeDiplome, List<Inscription> inscriptions, File imageBac, File imageS1, File imageS2,
+			File imageS3, File imageS4) {
 		super();
 		this.id = id;
 		this.cne = cne;
@@ -156,6 +68,7 @@ public class Etudiant implements Serializable {
 		this.noteS1 = noteS1;
 		this.noteS2 = noteS2;
 		this.noteS3 = noteS3;
+		this.noteS4 = noteS4;
 		this.moyenneBac = moyenneBac;
 		this.typeDiplome = typeDiplome;
 		this.inscriptions = inscriptions;
@@ -163,39 +76,7 @@ public class Etudiant implements Serializable {
 		this.imageS1 = imageS1;
 		this.imageS2 = imageS2;
 		this.imageS3 = imageS3;
-	}
-
-	public File getImageS1() {
-		return imageS1;
-	}
-
-	public void setImageS1(File imageS1) {
-		this.imageS1 = imageS1;
-	}
-
-	public File getImageS2() {
-		return imageS2;
-	}
-
-	public void setImageS2(File imageS2) {
-		this.imageS2 = imageS2;
-	}
-
-	public File getImageS3() {
-		return imageS3;
-	}
-
-	public void setImageS3(File imageS3) {
-		this.imageS3 = imageS3;
-	}
-
-	public void setImageBac(File imageBac) {
-		this.imageBac = imageBac;
-	}
-
-	public Etudiant() {
-		super();
-		// TODO Auto-generated constructor stub
+		this.imageS4 = imageS4;
 	}
 
 	public Long getId() {
@@ -286,6 +167,14 @@ public class Etudiant implements Serializable {
 		this.noteS3 = noteS3;
 	}
 
+	public double getNoteS4() {
+		return noteS4;
+	}
+
+	public void setNoteS4(double noteS4) {
+		this.noteS4 = noteS4;
+	}
+
 	public double getMoyenneBac() {
 		return moyenneBac;
 	}
@@ -312,6 +201,172 @@ public class Etudiant implements Serializable {
 
 	public File getImageBac() {
 		return imageBac;
+	}
+
+	public void setImageBac(File imageBac) {
+		this.imageBac = imageBac;
+	}
+
+	public File getImageS1() {
+		return imageS1;
+	}
+
+	public void setImageS1(File imageS1) {
+		this.imageS1 = imageS1;
+	}
+
+	public File getImageS2() {
+		return imageS2;
+	}
+
+	public void setImageS2(File imageS2) {
+		this.imageS2 = imageS2;
+	}
+
+	public File getImageS3() {
+		return imageS3;
+	}
+
+	public void setImageS3(File imageS3) {
+		this.imageS3 = imageS3;
+	}
+
+	public File getImageS4() {
+		return imageS4;
+	}
+
+	public void setImageS4(File imageS4) {
+		this.imageS4 = imageS4;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cin == null) ? 0 : cin.hashCode());
+		result = prime * result + ((cne == null) ? 0 : cne.hashCode());
+		result = prime * result + ((dateNaissance == null) ? 0 : dateNaissance.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((imageBac == null) ? 0 : imageBac.hashCode());
+		result = prime * result + ((imageS1 == null) ? 0 : imageS1.hashCode());
+		result = prime * result + ((imageS2 == null) ? 0 : imageS2.hashCode());
+		result = prime * result + ((imageS3 == null) ? 0 : imageS3.hashCode());
+		result = prime * result + ((imageS4 == null) ? 0 : imageS4.hashCode());
+		result = prime * result + ((inscriptions == null) ? 0 : inscriptions.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(moyenneBac);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		temp = Double.doubleToLongBits(noteS1);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(noteS2);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(noteS3);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(noteS4);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		result = prime * result + ((telephone == null) ? 0 : telephone.hashCode());
+		result = prime * result + ((typeDiplome == null) ? 0 : typeDiplome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Etudiant other = (Etudiant) obj;
+		if (cin == null) {
+			if (other.cin != null)
+				return false;
+		} else if (!cin.equals(other.cin))
+			return false;
+		if (cne == null) {
+			if (other.cne != null)
+				return false;
+		} else if (!cne.equals(other.cne))
+			return false;
+		if (dateNaissance == null) {
+			if (other.dateNaissance != null)
+				return false;
+		} else if (!dateNaissance.equals(other.dateNaissance))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (imageBac == null) {
+			if (other.imageBac != null)
+				return false;
+		} else if (!imageBac.equals(other.imageBac))
+			return false;
+		if (imageS1 == null) {
+			if (other.imageS1 != null)
+				return false;
+		} else if (!imageS1.equals(other.imageS1))
+			return false;
+		if (imageS2 == null) {
+			if (other.imageS2 != null)
+				return false;
+		} else if (!imageS2.equals(other.imageS2))
+			return false;
+		if (imageS3 == null) {
+			if (other.imageS3 != null)
+				return false;
+		} else if (!imageS3.equals(other.imageS3))
+			return false;
+		if (imageS4 == null) {
+			if (other.imageS4 != null)
+				return false;
+		} else if (!imageS4.equals(other.imageS4))
+			return false;
+		if (inscriptions == null) {
+			if (other.inscriptions != null)
+				return false;
+		} else if (!inscriptions.equals(other.inscriptions))
+			return false;
+		if (Double.doubleToLongBits(moyenneBac) != Double.doubleToLongBits(other.moyenneBac))
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		if (Double.doubleToLongBits(noteS1) != Double.doubleToLongBits(other.noteS1))
+			return false;
+		if (Double.doubleToLongBits(noteS2) != Double.doubleToLongBits(other.noteS2))
+			return false;
+		if (Double.doubleToLongBits(noteS3) != Double.doubleToLongBits(other.noteS3))
+			return false;
+		if (Double.doubleToLongBits(noteS4) != Double.doubleToLongBits(other.noteS4))
+			return false;
+		if (prenom == null) {
+			if (other.prenom != null)
+				return false;
+		} else if (!prenom.equals(other.prenom))
+			return false;
+		if (telephone == null) {
+			if (other.telephone != null)
+				return false;
+		} else if (!telephone.equals(other.telephone))
+			return false;
+		if (typeDiplome == null) {
+			if (other.typeDiplome != null)
+				return false;
+		} else if (!typeDiplome.equals(other.typeDiplome))
+			return false;
+		return true;
 	}
 
 }

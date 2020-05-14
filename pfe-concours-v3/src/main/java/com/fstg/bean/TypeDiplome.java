@@ -19,38 +19,38 @@ public class TypeDiplome implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String libelle;
-	
+	private String description;
+
 	@OneToMany(mappedBy = "typeDiplome")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<ConfigConcours> configConcourss = new ArrayList<ConfigConcours>();
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((libelle == null) ? 0 : libelle.hashCode());
-		return result;
-	}
-
-	
 	public List<ConfigConcours> getConfigConcourss() {
 		return configConcourss;
 	}
-
 
 	public void setConfigConcourss(List<ConfigConcours> configConcourss) {
 		this.configConcourss = configConcourss;
 	}
 
-
-	public TypeDiplome(Long id, String libelle, List<ConfigConcours> configConcourss) {
+	public TypeDiplome(Long id, String libelle, String description, List<ConfigConcours> configConcourss) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
+		this.description = description;
 		this.configConcourss = configConcourss;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((configConcourss == null) ? 0 : configConcourss.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((libelle == null) ? 0 : libelle.hashCode());
+		return result;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -61,6 +61,16 @@ public class TypeDiplome implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		TypeDiplome other = (TypeDiplome) obj;
+		if (configConcourss == null) {
+			if (other.configConcourss != null)
+				return false;
+		} else if (!configConcourss.equals(other.configConcourss))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -99,6 +109,14 @@ public class TypeDiplome implements Serializable {
 
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

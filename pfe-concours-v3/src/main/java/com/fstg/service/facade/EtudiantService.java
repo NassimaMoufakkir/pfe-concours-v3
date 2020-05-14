@@ -12,5 +12,8 @@ public interface EtudiantService {
 	public int save(Etudiant etudiant);
 	
 	public List<Etudiant> findByInscriptionsConcoursReference(String reference);
-
+	
+	public int deleteByTypeDiplomeLibelle(String libelle);
+	
+	
 }

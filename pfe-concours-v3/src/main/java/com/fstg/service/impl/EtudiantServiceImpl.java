@@ -2,6 +2,8 @@ package com.fstg.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +55,12 @@ public class EtudiantServiceImpl implements EtudiantService {
 	@Override
 	public List<Etudiant> findByInscriptionsConcoursReference(String reference) {
 		return etudiantDao.findByInscriptionsConcoursReference(reference);
+	}
+
+	@Override
+	@Transactional
+	public int deleteByTypeDiplomeLibelle(String libelle) {
+		return etudiantDao.deleteByTypeDiplomeLibelle(libelle);
 	}
 
 }

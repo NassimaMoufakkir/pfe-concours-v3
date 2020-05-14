@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.fstg.bean.TypeDiplome;
 import com.fstg.dao.TypeDiplomeDao;
 import com.fstg.service.facade.ConfigConcoursService;
+import com.fstg.service.facade.EtudiantService;
 import com.fstg.service.facade.TypeDiplomeService;
 
 @Service
@@ -19,6 +20,10 @@ public class TypeDiplomeServiceImpl implements TypeDiplomeService {
 
 	@Autowired
 	private ConfigConcoursService configConcoursService;
+	
+
+	@Autowired
+	private EtudiantService etudiantService;
 
 	@Override
 	public TypeDiplome findByLibelle(String libelle) {
@@ -42,8 +47,9 @@ public class TypeDiplomeServiceImpl implements TypeDiplomeService {
 	@Transactional
 	public int deleteByLibelle(String libelle) {
 		int resConfigConcours = configConcoursService.deleteByTypeDiplomeLibelle(libelle);
+		int resEtudiant = etudiantService.deleteByTypeDiplomeLibelle(libelle);
 		int resTypeDiplome = typeDiplomeDao.deleteByLibelle(libelle);
-		return resConfigConcours * resTypeDiplome;
+		return resConfigConcours * resTypeDiplome * resEtudiant;
 	}
 
 	@Override

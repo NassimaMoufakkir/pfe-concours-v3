@@ -35,7 +35,7 @@ public class ConfigConcoursRest {
 	}
 
 	@GetMapping("/type-diplome/libelle/{libelle}")
-	public ConfigConcours findByTypeDiplomeLibelle(@PathVariable String libelle) {
+	public List<ConfigConcours> findByTypeDiplomeLibelle(@PathVariable String libelle) {
 		return configConcoursService.findByTypeDiplomeLibelle(libelle);
 	}
 

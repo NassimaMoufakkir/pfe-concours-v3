@@ -1,9 +1,11 @@
 package com.fstg.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,6 @@ public class TypeDiplomeServiceImpl implements TypeDiplomeService {
 
 	@Autowired
 	private ConfigConcoursService configConcoursService;
-	
 
 	@Autowired
 	private EtudiantService etudiantService;
@@ -55,6 +56,18 @@ public class TypeDiplomeServiceImpl implements TypeDiplomeService {
 	@Override
 	public List<TypeDiplome> findAll() {
 		return typeDiplomeDao.findAll();
+	}
+
+	@Override
+	public int updateTypeDiplome(TypeDiplome td) {
+		TypeDiplome typeDiplome2 = typeDiplomeDao.findByLibelle(td.getLibelle());
+		if (typeDiplome2 != null) {
+			typeDiplome2.setId(td.getId());
+			typeDiplome2.setLibelle(td.getLibelle());
+			typeDiplome2.setDescription(td.getDescription());
+			return 1;
+		}
+		return -1;
 	}
 
 }

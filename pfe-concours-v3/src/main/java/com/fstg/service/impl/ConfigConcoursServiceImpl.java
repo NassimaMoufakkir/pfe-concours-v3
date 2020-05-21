@@ -36,7 +36,7 @@ public class ConfigConcoursServiceImpl implements ConfigConcoursService {
 	}
 
 	@Override
-	public ConfigConcours findByTypeDiplomeLibelle(String libelle) {
+	public List<ConfigConcours> findByTypeDiplomeLibelle(String libelle) {
 		return configConcoursDao.findByTypeDiplomeLibelle(libelle);
 	}
 

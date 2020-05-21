@@ -11,9 +11,9 @@ import com.fstg.bean.ConfigConcours;
 @Repository
 public interface ConfigConcoursDao extends JpaRepository<ConfigConcours, Long> {
 
-	//public List<ConfigConcours> findByTypeDiplomeLibelle(String libelle);
+	public List<ConfigConcours> findByTypeDiplomeLibelle(String libelle);
 	
-	public ConfigConcours findByTypeDiplomeLibelle(String libelle);
+	//public ConfigConcours findByTypeDiplomeLibelle(String libelle);
 
 	public List<ConfigConcours> findByConcoursReference(String reference);
 

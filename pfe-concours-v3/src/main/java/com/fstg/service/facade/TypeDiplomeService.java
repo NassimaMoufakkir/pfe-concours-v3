@@ -13,4 +13,5 @@ public interface TypeDiplomeService {
 
 	public int deleteByLibelle(String libelle);
 
+	public int updateTypeDiplome(TypeDiplome td);
 }

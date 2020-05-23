@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ import com.fstg.service.facade.FiliereService;
 @RequestMapping("pfe-concours-v3-api/filiere")
 public class FiliereRest {
 	@Autowired
-    private FiliereService filiereService;
+	private FiliereService filiereService;
 
 	@GetMapping("/libelle/{libelle}")
 	public Filiere findByLibelle(@PathVariable String reference) {
@@ -47,6 +48,15 @@ public class FiliereRest {
 	public int save(Departement departement, List<Filiere> filieres) {
 		return filiereService.save(departement, filieres);
 	}
-    
-    
+
+	@DeleteMapping("/id/{id}")
+	public int deleteById(@PathVariable Long id) {
+		return filiereService.deleteById(id);
+	}
+
+	@PutMapping("/id/{id}/libelle/{libelle}/description/{description}")
+	public Filiere update(@PathVariable Long id,@PathVariable String libelle,@PathVariable String description) {
+		return filiereService.update(id, libelle, description);
+	}
+
 }

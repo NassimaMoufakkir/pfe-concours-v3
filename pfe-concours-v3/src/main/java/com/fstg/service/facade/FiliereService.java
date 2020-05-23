@@ -18,4 +18,9 @@ public interface FiliereService {
 	public List<Filiere> findAll();
 
 	public int save(Departement departement, List<Filiere> filieres);
+	
+	public int deleteById(Long id);
+	
+	public Filiere update(Long id, String libelle, String description);
+
 }

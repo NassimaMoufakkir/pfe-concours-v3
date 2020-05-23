@@ -44,11 +44,14 @@ public class TypeDiplomeRest {
 		return typeDiplomeService.deleteByLibelle(libelle);
 	}
 
-	@PutMapping("/update/libelle/{libelle}")
+	@PutMapping("/update")
 	public int updateTypeDiplome(@RequestBody TypeDiplome td) {
 		return typeDiplomeService.updateTypeDiplome(td);
 	}
-	
-	
+
+	@PutMapping("/id/{id}/libelle/{libelle}/description/{description}")
+	public TypeDiplome update(@PathVariable Long id, @PathVariable String libelle, @PathVariable String description) {
+		return typeDiplomeService.update(id, libelle, description);
+	}
 
 }

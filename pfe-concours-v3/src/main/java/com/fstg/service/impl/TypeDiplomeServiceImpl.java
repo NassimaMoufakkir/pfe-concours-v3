@@ -61,13 +61,25 @@ public class TypeDiplomeServiceImpl implements TypeDiplomeService {
 	@Override
 	public int updateTypeDiplome(TypeDiplome td) {
 		TypeDiplome typeDiplome2 = typeDiplomeDao.findByLibelle(td.getLibelle());
-		if (typeDiplome2 != null) {
-			typeDiplome2.setId(td.getId());
-			typeDiplome2.setLibelle(td.getLibelle());
-			typeDiplome2.setDescription(td.getDescription());
+		if (td == null) {
+			return -1;
+		} else {
+			td.setId(typeDiplome2.getId());
+			typeDiplomeDao.save(td);
 			return 1;
 		}
-		return -1;
 	}
 
+	@Override
+	public TypeDiplome update(Long id, String libelle, String description) {
+		TypeDiplome foundedTypeDiplome = findById(id);
+		foundedTypeDiplome.setLibelle(libelle);
+		foundedTypeDiplome.setDescription(description);
+		TypeDiplome updatedTypeDiplome = typeDiplomeDao.save(foundedTypeDiplome);
+		return updatedTypeDiplome;
+	}
+
+	public TypeDiplome findById(Long id) {
+		return typeDiplomeDao.getOne(id);
+	}
 }

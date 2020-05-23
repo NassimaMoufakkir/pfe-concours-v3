@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.fstg.bean.Concours;
 import com.fstg.bean.ConfigConcours;
+import com.fstg.bean.Filiere;
 import com.fstg.bean.TypeDiplome;
 import com.fstg.dao.ConfigConcoursDao;
 import com.fstg.service.facade.ConcoursService;
@@ -109,6 +110,28 @@ public class ConfigConcoursServiceImpl implements ConfigConcoursService {
 		}
 		return 1;
 
+	}
+
+	@Override
+	public ConfigConcours update(Long id, double noteMin, int nbreMaxAdmis, int nbreMaxEcritAdmis,
+			int nbreMaxOraleAdmis) {
+		ConfigConcours foundedConfigConcours = findById(id);
+		foundedConfigConcours.setNoteMin(noteMin);
+		foundedConfigConcours.setNbreMaxAdmis(nbreMaxAdmis);
+		foundedConfigConcours.setNbreMaxEcritAdmis(nbreMaxEcritAdmis);
+		foundedConfigConcours.setNbreMaxOraleAdmis(nbreMaxOraleAdmis);
+		ConfigConcours updatedConfigConcours = configConcoursDao.save(foundedConfigConcours);
+		return updatedConfigConcours;
+	}
+
+	public ConfigConcours findById(Long id) {
+		return configConcoursDao.getOne(id);
+	}
+
+	@Override
+	public int deleteById(Long id) {
+		configConcoursDao.deleteById(id);
+		return 1;
 	}
 
 }

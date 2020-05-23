@@ -1,5 +1,6 @@
 package com.fstg.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fstg.bean.Concours;
+import com.fstg.bean.Departement;
 import com.fstg.dao.ConcoursDao;
 import com.fstg.service.facade.ConcoursService;
 import com.fstg.service.facade.ConfigConcoursService;
@@ -59,6 +61,26 @@ public class ConcoursServiceImpl implements ConcoursService {
 	@Override
 	public List<Concours> findByAnnee(int annee) {
 		return concoursDao.findByAnnee(annee);
+	}
+
+	@Override
+	public Concours update(Long id, String reference, int annee, Date dateOrale, Date dateEcrit,
+			int nbreEtudiantAdmisOrale, int nbreEtudiantAdmisEcrit, int nbreEtudiantAdmis, String description) {
+		Concours foundedConcours = findById(id);
+		foundedConcours.setReference(reference);
+		foundedConcours.setAnnee(annee);
+		foundedConcours.setDateOrale(dateOrale);
+		foundedConcours.setDateEcrit(dateEcrit);
+		foundedConcours.setNbreEtudiantAdmisOrale(nbreEtudiantAdmisOrale);
+		foundedConcours.setNbreEtudiantAdmisEcrit(nbreEtudiantAdmisEcrit);
+		foundedConcours.setNbreEtudiantAdmis(nbreEtudiantAdmis);
+		foundedConcours.setDescription(description);
+		Concours updatedConcours = concoursDao.save(foundedConcours);
+		return updatedConcours;
+	}
+
+	public Concours findById(Long id) {
+		return concoursDao.getOne(id);
 	}
 
 }

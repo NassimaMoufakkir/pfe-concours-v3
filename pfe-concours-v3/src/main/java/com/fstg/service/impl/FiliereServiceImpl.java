@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.fstg.bean.Departement;
 import com.fstg.bean.Filiere;
+import com.fstg.bean.TypeDiplome;
+import com.fstg.dao.DepartementDao;
 import com.fstg.dao.FiliereDao;
 import com.fstg.service.facade.FiliereService;
 
@@ -57,6 +59,25 @@ public class FiliereServiceImpl implements FiliereService {
 	@Override
 	public int deleteByDepartementReference(String reference) {
 		return filiereDao.deleteByDepartementReference(reference);
+	}
+
+	@Override
+	public int deleteById(Long id) {
+		filiereDao.deleteById(id);
+		return 1;
+	}
+
+	@Override
+	public Filiere update(Long id, String libelle, String description) {
+		Filiere foundedFiliere = findById(id);
+		foundedFiliere.setLibelle(libelle);
+		foundedFiliere.setDescription(description);
+		Filiere updatedFiliere = filiereDao.save(foundedFiliere);
+		return updatedFiliere;
+	}
+
+	public Filiere findById(Long id) {
+		return filiereDao.getOne(id);
 	}
 
 }

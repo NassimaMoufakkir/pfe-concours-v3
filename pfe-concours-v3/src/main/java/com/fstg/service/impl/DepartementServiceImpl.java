@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fstg.bean.Departement;
+import com.fstg.bean.TypeDiplome;
 import com.fstg.dao.DepartementDao;
 import com.fstg.service.facade.DepartementService;
 import com.fstg.service.facade.FiliereService;
@@ -53,5 +54,19 @@ public class DepartementServiceImpl implements DepartementService {
 		} else {
 			return -1;
 		}
+	}
+	
+	@Override
+	public Departement update(Long id, String nom, String reference, String description) {
+		Departement foundedDepartement = findById(id);
+		foundedDepartement.setNom(nom);
+		foundedDepartement.setReference(reference);
+		foundedDepartement.setDescription(description);
+		Departement updatedDepartement = departementDao.save(foundedDepartement);
+		return updatedDepartement;
+	}
+
+	public Departement findById(Long id) {
+		return departementDao.getOne(id);
 	}
 }

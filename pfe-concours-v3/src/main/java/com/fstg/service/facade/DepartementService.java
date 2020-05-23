@@ -3,6 +3,7 @@ package com.fstg.service.facade;
 import java.util.List;
 
 import com.fstg.bean.Departement;
+import com.fstg.bean.TypeDiplome;
 
 public interface DepartementService {
 	public int save(Departement departement);
@@ -12,4 +13,7 @@ public interface DepartementService {
 	public List<Departement> findAll();
 
 	public int deleteByReference(String reference);
+
+	public Departement update(Long id, String nom, String reference, String description);
+
 }

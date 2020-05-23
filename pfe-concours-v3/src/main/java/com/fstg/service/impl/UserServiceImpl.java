@@ -2,6 +2,7 @@ package com.fstg.service.impl;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -12,6 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import com.fstg.bean.TypeDiplome;
 import com.fstg.bean.User;
 import com.fstg.dao.UserDao;
 import com.fstg.service.facade.UserService;
@@ -100,6 +102,37 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByLogin(String login) {
 		return userDao.findByLogin(login);
+	}
+
+	@Override
+	public List<User> findAll() {
+		return userDao.findAll();
+	}
+
+	@Override
+	public User update(Long id, String login, String nom, String prenom, String email, String password) {
+		User foundedUser = findById(id);
+		foundedUser.setLogin(login);
+		foundedUser.setNom(nom);
+		foundedUser.setPrenom(prenom);
+		foundedUser.setEmail(email);
+		foundedUser.setPassword(password);
+		User updatedUser = userDao.save(foundedUser);
+		try {
+			sendEmailWithAttachment(foundedUser.getEmail(), "Modification de votre compte FSTG Concours",
+					"Bonjour/Bonsoir " + foundedUser.getNom() + " " + foundedUser.getPrenom()
+							+ ". <br> Votre compte FSTG Concours a été modifié avec succès. <br> Voici vos nouveaux coordonnées :"
+							+ "<br> Votre login (CNE) : " + foundedUser.getLogin() + "<br> Votre mot de passe : "
+							+ foundedUser.getPassword() + ".");
+		} catch (MessagingException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return updatedUser;
+	}
+
+	public User findById(Long id) {
+		return userDao.getOne(id);
 	}
 
 }

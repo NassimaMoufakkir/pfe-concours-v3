@@ -41,10 +41,10 @@ public class UserRest {
 		return userService.findAll();
 	}
 
-	@PutMapping("/id/{id}/login/{login}/nom/{nom}/prenom/{prenom}/email/{email}/password/{password}")
+	@PutMapping("/id/{id}/login/{login}/nom/{nom}/prenom/{prenom}/email/{email}")
 	public User update(@PathVariable Long id, @PathVariable String login, @PathVariable String nom,
-			@PathVariable String prenom, @PathVariable String email, @PathVariable String password) {
-		return userService.update(id, login, nom, prenom, email, password);
+			@PathVariable String prenom, @PathVariable String email) {
+		return userService.update(id, login, nom, prenom, email);
 	}
 
 }

@@ -15,6 +15,6 @@ public interface UserService {
 
 	public List<User> findAll();
 
-	public User update(Long id, String login, String nom, String prenom, String email, String password);
+	public User update(Long id, String login, String nom, String prenom, String email);
 
 }

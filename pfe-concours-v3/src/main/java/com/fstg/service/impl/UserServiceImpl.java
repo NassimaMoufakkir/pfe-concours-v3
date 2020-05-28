@@ -29,30 +29,20 @@ public class UserServiceImpl implements UserService {
 	private JavaMailSender javaMailSender;
 
 	void sendEmailWithAttachment(String to, String subject, String message) throws MessagingException, IOException {
-
 		MimeMessage msg = javaMailSender.createMimeMessage();
-
 		// true = multipart message
 		MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-
 		helper.setTo(to);
-
 		helper.setSubject(subject);
-
 		// default = text/plain
 		// helper.setText("Check attachment for image!");
-
 		// true = text/html
 		helper.setText("<h1>" + message + "</h1>", true);
-
 		// hard coded a file path
 		// FileSystemResource file = new FileSystemResource(new
 		// File("path/android.png"));
-
-//		helper.addAttachment("my_photo.png", new ClassPathResource("android.png"));
-
+		// helper.addAttachment("my_photo.png", new ClassPathResource("android.png"));
 		javaMailSender.send(msg);
-
 	}
 
 	public int register(User user) {
@@ -110,14 +100,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User update(Long id, String login, String nom, String prenom, String email, String password) {
+	public User update(Long id, String login, String nom, String prenom, String email) {
 		User foundedUser = findById(id);
 		foundedUser.setLogin(login);
 		foundedUser.setNom(nom);
 		foundedUser.setPrenom(prenom);
 		foundedUser.setEmail(email);
-		foundedUser.setPassword(password);
-		User updatedUser = userDao.save(foundedUser);
+		// foundedUser.setPassword(password);
+		foundedUser.setPassword(PasswordRandomUtil.generateRandomString(8));
+
 		try {
 			sendEmailWithAttachment(foundedUser.getEmail(), "Modification de votre compte FSTG Concours",
 					"Bonjour/Bonsoir " + foundedUser.getNom() + " " + foundedUser.getPrenom()
@@ -128,6 +119,11 @@ public class UserServiceImpl implements UserService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		foundedUser.setPassword(HashUtil.hash(foundedUser.getPassword()));
+		foundedUser.setNbrTentativeRestant(5);
+		User updatedUser = userDao.save(foundedUser);
+
 		return updatedUser;
 	}
 

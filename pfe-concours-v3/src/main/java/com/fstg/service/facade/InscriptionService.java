@@ -18,6 +18,11 @@ public interface InscriptionService {
 	public int save(Concours concours, List<Inscription> inscriptions);
 
 	public int save(Etudiant etudiant, List<Inscription> inscriptions);
-	
+
+	public List<Inscription> findByConcoursId(Long id);
+
+	List<Inscription> findByConcoursDescription(String description);
+
+	public Inscription findByEtudiantCneAndConcoursReference(String cne, String reference);
 
 }

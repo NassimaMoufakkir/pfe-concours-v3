@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fstg.bean.Etudiant;
+import com.fstg.bean.Inscription;
 import com.fstg.bean.TypeDiplome;
 import com.fstg.dao.EtudiantDao;
 import com.fstg.service.facade.EtudiantService;
@@ -44,7 +45,10 @@ public class EtudiantServiceImpl implements EtudiantService {
 		}
 		if (loadedTypeDiplome == null) {
 			return -2;
-		} else {
+		}
+		if (loadedEtudiant.getInscriptions() != null) {
+			return -3;
+		}else {
 			etudiant.setTypeDiplome(loadedTypeDiplome);
 			etudiantDao.save(etudiant);
 			inscriptionService.save(etudiant, etudiant.getInscriptions());

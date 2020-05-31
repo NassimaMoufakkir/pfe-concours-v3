@@ -38,6 +38,16 @@ public class InscriptionRest {
 	public List<Inscription> findByConcoursReference(@PathVariable String reference) {
 		return inscriptionService.findByConcoursReference(reference);
 	}
+	
+	@GetMapping("concours/description/{description}")
+	public List<Inscription> findByConcoursDescription(@PathVariable String description){
+		 return inscriptionService.findByConcoursDescription(description);
+	}
+	
+	@GetMapping("concours/{id}")
+	public List<Inscription> findByConcoursReference(@PathVariable Long id) {
+		return inscriptionService.findByConcoursId(id);
+	}
 
 	@PostMapping("/")
 	public int save(@RequestBody Inscription inscription) {

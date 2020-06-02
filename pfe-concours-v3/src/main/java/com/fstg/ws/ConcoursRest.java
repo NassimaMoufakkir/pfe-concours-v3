@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fstg.bean.Concours;
 import com.fstg.service.facade.ConcoursService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("Cette end point permet de gerer les demandes du doc")
 @RestController
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RequestMapping("pfe-concours-v3-api/concours")
@@ -31,11 +35,13 @@ public class ConcoursRest {
 		return concoursService.findByReference(reference);
 	}
 
+	@ApiOperation("Cette méthode permet de lister tous les concours")
 	@GetMapping("/")
 	public List<Concours> findAll() {
 		return concoursService.findAll();
 	}
 
+	@ApiOperation("Cette méthode permet d'enregistrer un concours")
 	@PostMapping("/")
 	public int save(@RequestBody Concours concours) {
 		return concoursService.save(concours);
@@ -46,6 +52,7 @@ public class ConcoursRest {
 		return concoursService.findByAnnee(annee);
 	}
 
+	@ApiOperation("Cette méthode permet de supprimer un concours à partie de sa référence")
 	@DeleteMapping("/reference/{reference}")
 	public int deleteByReference(@PathVariable String reference) {
 		return concoursService.deleteByReference(reference);

@@ -57,11 +57,12 @@ public class DepartementServiceImpl implements DepartementService {
 	}
 	
 	@Override
-	public Departement update(Long id, String nom, String reference, String description) {
+	public Departement update(Long id, String nom, String reference, String description, String chef) {
 		Departement foundedDepartement = findById(id);
 		foundedDepartement.setNom(nom);
 		foundedDepartement.setReference(reference);
 		foundedDepartement.setDescription(description);
+		foundedDepartement.setChef(chef);
 		Departement updatedDepartement = departementDao.save(foundedDepartement);
 		return updatedDepartement;
 	}

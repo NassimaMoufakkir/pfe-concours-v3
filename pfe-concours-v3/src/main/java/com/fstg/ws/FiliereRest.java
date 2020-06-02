@@ -54,9 +54,10 @@ public class FiliereRest {
 		return filiereService.deleteById(id);
 	}
 
-	@PutMapping("/id/{id}/libelle/{libelle}/description/{description}")
-	public Filiere update(@PathVariable Long id,@PathVariable String libelle,@PathVariable String description) {
-		return filiereService.update(id, libelle, description);
+	@PutMapping("/id/{id}/libelle/{libelle}/description/{description}/responsable/{responsable}")
+	public Filiere update(@PathVariable Long id, @PathVariable String libelle, @PathVariable String description,
+			@PathVariable String responsable) {
+		return filiereService.update(id, libelle, description, responsable);
 	}
 
 }

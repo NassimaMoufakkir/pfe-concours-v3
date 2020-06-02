@@ -14,6 +14,7 @@ public class Filiere {
 	private Long id;
 	private String libelle;
 	private String description;
+	private String responsable;
 	@ManyToOne
 	private Departement departement;
 
@@ -22,11 +23,12 @@ public class Filiere {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Filiere(Long id, String libelle, String description, Departement departement) {
+	public Filiere(Long id, String libelle, String description, String responsable, Departement departement) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
 		this.description = description;
+		this.responsable = responsable;
 		this.departement = departement;
 	}
 
@@ -60,6 +62,14 @@ public class Filiere {
 
 	public void setDepartement(Departement departement) {
 		this.departement = departement;
+	}
+
+	public String getResponsable() {
+		return responsable;
+	}
+
+	public void setResponsable(String responsable) {
+		this.responsable = responsable;
 	}
 
 }

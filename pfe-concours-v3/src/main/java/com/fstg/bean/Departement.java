@@ -19,6 +19,7 @@ public class Departement {
 	private String nom;
 	private String reference;
 	private String description;
+	private String chef;
 	@OneToMany(mappedBy = "departement")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<Filiere> filieres;
@@ -27,12 +28,13 @@ public class Departement {
 		super();
 	}
 
-	public Departement(Long id, String nom, String reference, String description, List<Filiere> filieres) {
+	public Departement(Long id, String nom, String reference, String description, String chef, List<Filiere> filieres) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.reference = reference;
 		this.description = description;
+		this.chef = chef;
 		this.filieres = filieres;
 	}
 
@@ -74,6 +76,14 @@ public class Departement {
 
 	public void setFilieres(List<Filiere> filieres) {
 		this.filieres = filieres;
+	}
+
+	public String getChef() {
+		return chef;
+	}
+
+	public void setChef(String chef) {
+		this.chef = chef;
 	}
 
 }

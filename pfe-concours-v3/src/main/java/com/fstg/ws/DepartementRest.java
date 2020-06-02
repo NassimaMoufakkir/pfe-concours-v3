@@ -43,10 +43,10 @@ public class DepartementRest {
 		return departementService.save(departement);
 	}
 
-	@PutMapping("/id/{id}/nom/{nom}/reference/{reference}/description/{description}")
+	@PutMapping("/id/{id}/nom/{nom}/reference/{reference}/description/{description}/chef/{chef}")
 	public Departement update(@PathVariable Long id, @PathVariable String nom, @PathVariable String reference,
-			@PathVariable String description) {
-		return departementService.update(id, nom, reference, description);
+			@PathVariable String description, @PathVariable String chef) {
+		return departementService.update(id, nom, reference, description, chef);
 	}
 
 }

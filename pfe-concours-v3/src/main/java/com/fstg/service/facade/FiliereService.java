@@ -21,6 +21,6 @@ public interface FiliereService {
 	
 	public int deleteById(Long id);
 	
-	public Filiere update(Long id, String libelle, String description);
+	public Filiere update(Long id, String libelle, String description, String responsable);
 
 }

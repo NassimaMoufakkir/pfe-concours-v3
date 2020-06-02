@@ -14,6 +14,6 @@ public interface DepartementService {
 
 	public int deleteByReference(String reference);
 
-	public Departement update(Long id, String nom, String reference, String description);
+	public Departement update(Long id, String nom, String reference, String description, String chef);
 
 }

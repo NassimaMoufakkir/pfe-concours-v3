@@ -68,10 +68,11 @@ public class FiliereServiceImpl implements FiliereService {
 	}
 
 	@Override
-	public Filiere update(Long id, String libelle, String description) {
+	public Filiere update(Long id, String libelle, String description, String responsable) {
 		Filiere foundedFiliere = findById(id);
 		foundedFiliere.setLibelle(libelle);
 		foundedFiliere.setDescription(description);
+		foundedFiliere.setResponsable(responsable);
 		Filiere updatedFiliere = filiereDao.save(foundedFiliere);
 		return updatedFiliere;
 	}

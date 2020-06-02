@@ -18,6 +18,10 @@ import com.fstg.bean.User;
 import com.fstg.service.facade.TypeDiplomeService;
 import com.fstg.service.facade.UserService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("Cet Endpoint permet de gérer les demandes du document")
 @RestController
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RequestMapping("pfe-concours-v3-api/user")
@@ -26,21 +30,25 @@ public class UserRest {
 	@Autowired
 	private UserService userService;
 
+	@ApiOperation("Cette méthode permet au User de se connecter")
 	@PutMapping("/seconnecter")
 	public int seConnecter(@RequestBody User user) {
 		return userService.seConnecter(user);
 	}
 
+	@ApiOperation("Cette méthode permet de sauvegarder un User")
 	@PostMapping("/registrer")
 	public int register(@RequestBody User user) {
 		return userService.register(user);
 	}
 
+	@ApiOperation("Cette méthode permet de lister tous les Users")
 	@GetMapping("/")
 	public List<User> findAll() {
 		return userService.findAll();
 	}
 
+	@ApiOperation("Cette méthode permet de modifier un User")
 	@PutMapping("/id/{id}/login/{login}/nom/{nom}/prenom/{prenom}/email/{email}")
 	public User update(@PathVariable Long id, @PathVariable String login, @PathVariable String nom,
 			@PathVariable String prenom, @PathVariable String email) {

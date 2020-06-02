@@ -21,7 +21,7 @@ public interface InscriptionService {
 
 	public List<Inscription> findByConcoursId(Long id);
 
-	List<Inscription> findByConcoursDescription(String description);
+	public List<Inscription> findByConcoursDescription(String description);
 
 	public Inscription findByEtudiantCneAndConcoursReference(String cne, String reference);
 

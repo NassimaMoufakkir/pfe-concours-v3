@@ -21,7 +21,7 @@ import com.fstg.service.facade.ConcoursService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api("Cette end point permet de gerer les demandes du doc")
+@Api("Cet Endpoint permet de gérer les demandes du document")
 @RestController
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RequestMapping("pfe-concours-v3-api/concours")
@@ -30,34 +30,37 @@ public class ConcoursRest {
 	@Autowired
 	private ConcoursService concoursService;
 
+	@ApiOperation("Cette méthode permet de retourner un Concours à partir de sa référence ")
 	@GetMapping("reference/{reference}")
 	public Concours findByReference(@PathVariable String reference) {
 		return concoursService.findByReference(reference);
 	}
 
-	@ApiOperation("Cette méthode permet de lister tous les concours")
+	@ApiOperation("Cette méthode permet de lister tous les Concours")
 	@GetMapping("/")
 	public List<Concours> findAll() {
 		return concoursService.findAll();
 	}
 
-	@ApiOperation("Cette méthode permet d'enregistrer un concours")
+	@ApiOperation("Cette méthode permet de sauvegarder un Concours")
 	@PostMapping("/")
 	public int save(@RequestBody Concours concours) {
 		return concoursService.save(concours);
 	}
 
+	@ApiOperation("Cette méthode permet de retouner une liste de Concours en se basant sur l'année")
 	@GetMapping("/annee/{annee}")
 	public List<Concours> findByAnnee(@PathVariable int annee) {
 		return concoursService.findByAnnee(annee);
 	}
 
-	@ApiOperation("Cette méthode permet de supprimer un concours à partie de sa référence")
+	@ApiOperation("Cette méthode permet de supprimer un Concours à partir de sa référence")
 	@DeleteMapping("/reference/{reference}")
 	public int deleteByReference(@PathVariable String reference) {
 		return concoursService.deleteByReference(reference);
 	}
 
+	@ApiOperation("Cette méthode permet de modifier un Concours")
 	@PutMapping("/id/{id}/reference/{reference}/annee/{annee}/dateOrale/{dateOrale}/dateEcrit/{dateEcrit}/nbreEtudiantAdmisOrale/{nbreEtudiantAdmisOrale}/nbreEtudiantAdmisEcrit/{nbreEtudiantAdmisEcrit}/nbreEtudiantAdmis/{nbreEtudiantAdmis}/description/{description}")
 	public Concours update(@PathVariable Long id, @PathVariable String reference, @PathVariable int annee,
 			@DateTimeFormat(pattern = "dd-MM-yyyy") Date dateOrale, @DateTimeFormat(pattern = "dd-MM-yyyy") Date dateEcrit, @PathVariable int nbreEtudiantAdmisOrale,

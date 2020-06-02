@@ -17,6 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fstg.bean.Etudiant;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("Cet Endpoint permet de gérer les demandes du document")
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RequestMapping("pfe-concours-v3-api/file-uploader")
 @RestController
@@ -26,6 +30,7 @@ public class FileUploader {
 	//Path to save the file
 	private final Path rootLocation = Paths.get("C:/Users/hp/Desktop/files");
 
+	@ApiOperation("Cette méthode de télécharger un fichier")
 	@PostMapping("/savefile")
 	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file, Etudiant etudiant) {
 		String message;

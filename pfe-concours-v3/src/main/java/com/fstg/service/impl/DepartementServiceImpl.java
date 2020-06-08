@@ -39,21 +39,16 @@ public class DepartementServiceImpl implements DepartementService {
 		} else {
 			departementDao.save(departement);
 			filiereService.save(departement, departement.getFilieres());
-			return 1;
 		}
+		return 1;
 	}
 
 	@Override
 	@Transactional
 	public int deleteByReference(String reference) {
-		Departement foundedDepartement = findByReference(reference);
-		if (foundedDepartement != null) {
-			int res1 = filiereService.deleteByDepartementReference(reference);
-			int res2 = departementDao.deleteByReference(reference);
-			return res1 + res2;
-		} else {
-			return -1;
-		}
+		int res1 = filiereService.deleteByDepartementReference(reference);
+		int res2 = departementDao.deleteByReference(reference);
+		return res1 + res2;
 	}
 	
 	@Override

@@ -46,9 +46,9 @@ public class EtudiantServiceImpl implements EtudiantService {
 		if (loadedTypeDiplome == null) {
 			return -2;
 		}
-		if (loadedEtudiant.getInscriptions() != null) {
+		/*if (loadedEtudiant.getInscriptions() != null) {
 			return -3;
-		}else {
+		}*/else {
 			etudiant.setTypeDiplome(loadedTypeDiplome);
 			etudiantDao.save(etudiant);
 			inscriptionService.save(etudiant, etudiant.getInscriptions());

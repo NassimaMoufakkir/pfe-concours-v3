@@ -112,7 +112,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			sendEmailWithAttachment(foundedUser.getEmail(), "Modification de votre compte FSTG Concours",
 					"Bonjour/Bonsoir " + foundedUser.getNom() + " " + foundedUser.getPrenom()
-							+ ". <br> Votre compte FSTG Concours a été modifié avec succès. <br> Voici vos nouveaux coordonnées :"
+							+ ". <br> Votre compte FSTG Concours a été modifié avec succès. <br> Voici vos nouvelles coordonnées :"
 							+ "<br> Votre login (CNE) : " + foundedUser.getLogin() + "<br> Votre mot de passe : "
 							+ foundedUser.getPassword() + ".");
 		} catch (MessagingException | IOException e) {

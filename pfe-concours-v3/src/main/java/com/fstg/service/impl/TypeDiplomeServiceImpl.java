@@ -40,8 +40,8 @@ public class TypeDiplomeServiceImpl implements TypeDiplomeService {
 			typeDiplomeDao.save(typeDiplome);
 			// Update
 			configConcoursService.save(typeDiplome, typeDiplome.getConfigConcourss());
-			return 1;
 		}
+		return 1;
 	}
 
 	@Override

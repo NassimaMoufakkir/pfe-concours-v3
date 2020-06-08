@@ -54,8 +54,9 @@ public class ConcoursServiceImpl implements ConcoursService {
 	@Transactional
 	public int deleteByReference(String reference) {
 		int resConfig = configConcoursService.deleteByConcoursReference(reference);
+		int resInscription = inscriptionService.deleteByConcoursReference(reference);
 		int resConcours = concoursDao.deleteByReference(reference);
-		return resConcours + resConfig;
+		return resConcours + resConfig + resInscription;
 	}
 
 	@Override

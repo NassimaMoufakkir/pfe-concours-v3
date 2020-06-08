@@ -3,6 +3,8 @@ package com.fstg.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -106,4 +108,10 @@ public class InscriptionServiceImpl implements InscriptionService {
 		return inscriptionDao.findByEtudiantCneAndConcoursReference(cne, reference);
 	}
 
+
+	@Override
+	@Transactional
+	public int deleteByConcoursReference(String reference) {
+		return inscriptionDao.deleteByConcoursReference(reference);
+	}
 }

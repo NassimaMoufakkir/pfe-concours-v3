@@ -25,14 +25,6 @@ public class TypeDiplome implements Serializable {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<ConfigConcours> configConcourss = new ArrayList<ConfigConcours>();
 
-	public List<ConfigConcours> getConfigConcourss() {
-		return configConcourss;
-	}
-
-	public void setConfigConcourss(List<ConfigConcours> configConcourss) {
-		this.configConcourss = configConcourss;
-	}
-
 	public TypeDiplome(Long id, String libelle, String description, List<ConfigConcours> configConcourss) {
 		super();
 		this.id = id;
@@ -119,4 +111,11 @@ public class TypeDiplome implements Serializable {
 		this.description = description;
 	}
 
+	public List<ConfigConcours> getConfigConcourss() {
+		return configConcourss;
+	}
+
+	public void setConfigConcourss(List<ConfigConcours> configConcourss) {
+		this.configConcourss = configConcourss;
+	}
 }

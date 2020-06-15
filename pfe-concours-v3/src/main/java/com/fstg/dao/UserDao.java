@@ -8,6 +8,7 @@ import com.fstg.bean.User;
 
 @Repository
 public interface UserDao extends JpaRepository<User, Long> {
+
 	public User findByLogin(String login);
 
 }

@@ -71,6 +71,7 @@ public class ConfigConcoursServiceImpl implements ConfigConcoursService {
 			if (typeDiplome != null) {
 				configConcours.setTypeDiplome(typeDiplome);
 				configConcours.setConcours(concours);
+				configConcours.setAnneeBacMin(configConcours.getAnneeBacMax() -1);
 				configConcoursDao.save(configConcours);
 			}
 		}

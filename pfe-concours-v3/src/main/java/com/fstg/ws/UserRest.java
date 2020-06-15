@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fstg.bean.Etudiant;
 import com.fstg.bean.Filiere;
 import com.fstg.bean.TypeDiplome;
 import com.fstg.bean.User;
@@ -36,18 +37,17 @@ public class UserRest {
 		return userService.seConnecter(user);
 	}
 
-	@ApiOperation("Cette méthode permet de sauvegarder un User")
-	@PostMapping("/registrer")
-	public int register(@RequestBody User user) {
-		return userService.register(user);
-	}
-
 	@ApiOperation("Cette méthode permet de lister tous les Users")
 	@GetMapping("/")
 	public List<User> findAll() {
 		return userService.findAll();
 	}
 
+	@PostMapping("/registrer")
+	public int register(@RequestBody User user) {
+		return userService.register(user);
+	}
+	
 	@ApiOperation("Cette méthode permet de modifier un User")
 	@PutMapping("/id/{id}/login/{login}/nom/{nom}/prenom/{prenom}/email/{email}")
 	public User update(@PathVariable Long id, @PathVariable String login, @PathVariable String nom,

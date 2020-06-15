@@ -70,4 +70,5 @@ public class TypeDiplomeServiceImpl implements TypeDiplomeService {
 	public TypeDiplome findById(Long id) {
 		return typeDiplomeDao.getOne(id);
 	}
+
 }

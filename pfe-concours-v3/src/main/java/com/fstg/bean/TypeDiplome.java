@@ -25,12 +25,18 @@ public class TypeDiplome implements Serializable {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<ConfigConcours> configConcourss = new ArrayList<ConfigConcours>();
 
-	public TypeDiplome(Long id, String libelle, String description, List<ConfigConcours> configConcourss) {
+	@OneToMany(mappedBy = "typeDiplome")
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private List<Etudiant> etudiants = new ArrayList<Etudiant>();
+
+	public TypeDiplome(Long id, String libelle, String description, List<ConfigConcours> configConcourss,
+			List<Etudiant> etudiants) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
 		this.description = description;
 		this.configConcourss = configConcourss;
+		this.etudiants = etudiants;
 	}
 
 	@Override
@@ -118,4 +124,13 @@ public class TypeDiplome implements Serializable {
 	public void setConfigConcourss(List<ConfigConcours> configConcourss) {
 		this.configConcourss = configConcourss;
 	}
+
+	public List<Etudiant> getEtudiants() {
+		return etudiants;
+	}
+
+	public void setEtudiants(List<Etudiant> etudiants) {
+		this.etudiants = etudiants;
+	}
+
 }

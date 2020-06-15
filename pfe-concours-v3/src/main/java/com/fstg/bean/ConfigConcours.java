@@ -1,6 +1,7 @@
 package com.fstg.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,13 +24,15 @@ public class ConfigConcours implements Serializable {
 	private TypeDiplome typeDiplome;
 	@ManyToOne
 	private Concours concours;
+	private int anneeBacMax;
+	private int anneeBacMin;
 
 	public ConfigConcours() {
 		super();
 	}
 
-	public ConfigConcours(Long id, double noteMin, int nbreMaxAdmis, int nbreMaxEcritAdmis,
-			int nbreMaxOraleAdmis, TypeDiplome typeDiplome, Concours concours) {
+	/*public ConfigConcours(Long id, double noteMin, int nbreMaxAdmis, int nbreMaxEcritAdmis, int nbreMaxOraleAdmis,
+			TypeDiplome typeDiplome, Concours concours) {
 		super();
 		this.id = id;
 		this.noteMin = noteMin;
@@ -38,6 +41,20 @@ public class ConfigConcours implements Serializable {
 		this.nbreMaxOraleAdmis = nbreMaxOraleAdmis;
 		this.typeDiplome = typeDiplome;
 		this.concours = concours;
+	}*/
+
+	public ConfigConcours(Long id, double noteMin, int nbreMaxAdmis, int nbreMaxEcritAdmis, int nbreMaxOraleAdmis,
+			TypeDiplome typeDiplome, Concours concours, int anneeBacMax, int anneeBacMin) {
+		super();
+		this.id = id;
+		this.noteMin = noteMin;
+		this.nbreMaxAdmis = nbreMaxAdmis;
+		this.nbreMaxEcritAdmis = nbreMaxEcritAdmis;
+		this.nbreMaxOraleAdmis = nbreMaxOraleAdmis;
+		this.typeDiplome = typeDiplome;
+		this.concours = concours;
+		this.anneeBacMax = anneeBacMax;
+		this.anneeBacMin = anneeBacMin;
 	}
 
 	public TypeDiplome getTypeDiplome() {
@@ -94,6 +111,22 @@ public class ConfigConcours implements Serializable {
 
 	public void setConcours(Concours concours) {
 		this.concours = concours;
+	}
+
+	public int getAnneeBacMax() {
+		return anneeBacMax;
+	}
+
+	public void setAnneeBacMax(int anneeBacMax) {
+		this.anneeBacMax = anneeBacMax;
+	}
+
+	public int getAnneeBacMin() {
+		return anneeBacMin;
+	}
+
+	public void setAnneeBacMin(int anneeBacMin) {
+		this.anneeBacMin = anneeBacMin;
 	}
 
 }

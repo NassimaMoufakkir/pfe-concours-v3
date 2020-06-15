@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import com.fstg.bean.Etudiant;
 import com.fstg.bean.TypeDiplome;
 import com.fstg.bean.User;
 import com.fstg.dao.UserDao;
@@ -45,35 +46,12 @@ public class UserServiceImpl implements UserService {
 		javaMailSender.send(msg);
 	}
 
-	public int register(User user) {
-		if (findByLogin(user.getLogin()) != null) {
-			return -1;
-		} else {
-			user.setPassword(PasswordRandomUtil.generateRandomString(8));
-
-			try {
-				sendEmailWithAttachment(user.getEmail(), "Création de votre compte FSTG Concours", "Bonjour/Bonsoir "
-						+ user.getNom() + " " + user.getPrenom()
-						+ ". <br> Votre compte FSTG Concours a été créé avec succès. <br> Pour effectuer votre préinscription, "
-						+ "veuillez vous connecter. <br> Voici vos coordonnées :" + "<br> Votre login (CNE) : "
-						+ user.getLogin() + "<br> Votre mot de passe : " + user.getPassword() + ".");
-			} catch (MessagingException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // ("ha login " + user.getLogin() + " o ha pass " + user.getPassword());
-			user.setPassword(HashUtil.hash(user.getPassword()));
-			user.setNbrTentativeRestant(5);
-			userDao.save(user);
-			return 1;
-		}
-	}
-
 	@Override
 	public int seConnecter(User user) {
 		User loadedUser = findByLogin(user.getLogin());
 		if (loadedUser == null) {
 			return -1;
-		} else if (!loadedUser.getPassword().equalsIgnoreCase(HashUtil.hash(user.getPassword()))) {
+		} else if (!loadedUser.getPassword().equalsIgnoreCase(user.getPassword())) {
 			loadedUser.setNbrTentativeRestant(loadedUser.getNbrTentativeRestant() - 1);
 			if (loadedUser.getNbrTentativeRestant() == 0) {
 				loadedUser.setBloqued(true);
@@ -85,6 +63,17 @@ public class UserServiceImpl implements UserService {
 				return -3;
 			}
 		} else {
+			return 1;
+		}
+	}
+
+	@Override
+	public int register(User user) {
+		if (findByLogin(user.getLogin()) != null) {
+			return -1;
+		} else {
+			user.setNbrTentativeRestant(5);
+			userDao.save(user);
 			return 1;
 		}
 	}
@@ -103,23 +92,8 @@ public class UserServiceImpl implements UserService {
 	public User update(Long id, String login, String nom, String prenom, String email) {
 		User foundedUser = findById(id);
 		foundedUser.setLogin(login);
-		foundedUser.setNom(nom);
-		foundedUser.setPrenom(prenom);
-		foundedUser.setEmail(email);
 		// foundedUser.setPassword(password);
 		foundedUser.setPassword(PasswordRandomUtil.generateRandomString(8));
-
-		try {
-			sendEmailWithAttachment(foundedUser.getEmail(), "Modification de votre compte FSTG Concours",
-					"Bonjour/Bonsoir " + foundedUser.getNom() + " " + foundedUser.getPrenom()
-							+ ". <br> Votre compte FSTG Concours a été modifié avec succès. <br> Voici vos nouvelles coordonnées :"
-							+ "<br> Votre login (CNE) : " + foundedUser.getLogin() + "<br> Votre mot de passe : "
-							+ foundedUser.getPassword() + ".");
-		} catch (MessagingException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		foundedUser.setPassword(HashUtil.hash(foundedUser.getPassword()));
 		foundedUser.setNbrTentativeRestant(5);
 		User updatedUser = userDao.save(foundedUser);

@@ -59,10 +59,10 @@ public class ConfigConcoursRest {
 	 * configConcoursService.validateConfigConcours(concours, configConcourss); }
 	 */
 
-	/*
-	 * @PostMapping("/") public int save(ConfigConcours configConcours) { return
-	 * configConcoursService.save(configConcours); }
-	 */
+	@PostMapping("/saveTest")
+	public int save(@RequestBody ConfigConcours configConcours) {
+		return configConcoursService.save(configConcours);
+	}
 
 	@ApiOperation("Cette méthode permet de trouver une ConfigConcours à partir du libellé d'un TypeDiplome et de la référence d'un Concours")
 	@GetMapping("/concours/reference/{reference}/type-diplome/libelle/{libelle}")

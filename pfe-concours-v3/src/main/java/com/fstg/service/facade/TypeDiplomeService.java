@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.fstg.bean.TypeDiplome;
 
 public interface TypeDiplomeService {
+
 	public TypeDiplome findByLibelle(String libelle);
 
 	public TypeDiplome findById(Long id);
@@ -17,4 +18,5 @@ public interface TypeDiplomeService {
 	public int deleteByLibelle(String libelle);
 
 	public TypeDiplome update(Long id, String libelle, String description);
+
 }

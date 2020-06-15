@@ -84,4 +84,9 @@ public class ConcoursServiceImpl implements ConcoursService {
 		return concoursDao.getOne(id);
 	}
 
+	@Override
+	public Concours findConcoursByConfigConcourssNoteMin(double noteMin) {
+		return concoursDao.findConcoursByConfigConcourssNoteMin(noteMin);
+	}
+
 }

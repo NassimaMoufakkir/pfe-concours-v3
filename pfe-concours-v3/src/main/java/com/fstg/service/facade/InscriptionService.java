@@ -26,5 +26,8 @@ public interface InscriptionService {
 	public Inscription findByEtudiantCneAndConcoursReference(String cne, String reference);
 
 	public int deleteByConcoursReference(String reference);
+	
+	public int deleteByEtudiantCne(String cne);
+
 
 }

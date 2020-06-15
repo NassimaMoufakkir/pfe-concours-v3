@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 public class Etudiant implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -36,6 +37,8 @@ public class Etudiant implements Serializable {
 	private double noteS3;
 	private double noteS4;
 	private double moyenneBac;
+	private int anneeBac;
+	private double moyenne;
 	@ManyToOne
 	private TypeDiplome typeDiplome;
 	@OneToMany(mappedBy = "etudiant")
@@ -47,6 +50,12 @@ public class Etudiant implements Serializable {
 	private File imageS3;
 	private File imageS4;
 
+	private String password;
+	private boolean bloqued;
+	private int nbrTentativeRestant;
+	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	private Date dateBloquage;
+
 	public Etudiant() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -54,8 +63,9 @@ public class Etudiant implements Serializable {
 
 	public Etudiant(Long id, String cne, String cin, String nom, String prenom, String email, String telephone,
 			Date dateNaissance, double noteS1, double noteS2, double noteS3, double noteS4, double moyenneBac,
-			TypeDiplome typeDiplome, List<Inscription> inscriptions, File imageBac, File imageS1, File imageS2,
-			File imageS3, File imageS4) {
+			int anneeBac, double moyenne, TypeDiplome typeDiplome, List<Inscription> inscriptions, File imageBac,
+			File imageS1, File imageS2, File imageS3, File imageS4, String password, boolean bloqued,
+			int nbrTentativeRestant, Date dateBloquage) {
 		super();
 		this.id = id;
 		this.cne = cne;
@@ -70,6 +80,8 @@ public class Etudiant implements Serializable {
 		this.noteS3 = noteS3;
 		this.noteS4 = noteS4;
 		this.moyenneBac = moyenneBac;
+		this.anneeBac = anneeBac;
+		this.moyenne = moyenne;
 		this.typeDiplome = typeDiplome;
 		this.inscriptions = inscriptions;
 		this.imageBac = imageBac;
@@ -77,6 +89,18 @@ public class Etudiant implements Serializable {
 		this.imageS2 = imageS2;
 		this.imageS3 = imageS3;
 		this.imageS4 = imageS4;
+		this.password = password;
+		this.bloqued = bloqued;
+		this.nbrTentativeRestant = nbrTentativeRestant;
+		this.dateBloquage = dateBloquage;
+	}
+
+	public double getMoyenne() {
+		return moyenne;
+	}
+
+	public void setMoyenne(double moyenne) {
+		this.moyenne = moyenne;
 	}
 
 	public Long getId() {
@@ -239,134 +263,68 @@ public class Etudiant implements Serializable {
 		this.imageS4 = imageS4;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cin == null) ? 0 : cin.hashCode());
-		result = prime * result + ((cne == null) ? 0 : cne.hashCode());
-		result = prime * result + ((dateNaissance == null) ? 0 : dateNaissance.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((imageBac == null) ? 0 : imageBac.hashCode());
-		result = prime * result + ((imageS1 == null) ? 0 : imageS1.hashCode());
-		result = prime * result + ((imageS2 == null) ? 0 : imageS2.hashCode());
-		result = prime * result + ((imageS3 == null) ? 0 : imageS3.hashCode());
-		result = prime * result + ((imageS4 == null) ? 0 : imageS4.hashCode());
-		result = prime * result + ((inscriptions == null) ? 0 : inscriptions.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(moyenneBac);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
-		temp = Double.doubleToLongBits(noteS1);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(noteS2);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(noteS3);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(noteS4);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result + ((telephone == null) ? 0 : telephone.hashCode());
-		result = prime * result + ((typeDiplome == null) ? 0 : typeDiplome.hashCode());
-		return result;
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isBloqued() {
+		return bloqued;
+	}
+
+	public void setBloqued(boolean bloqued) {
+		this.bloqued = bloqued;
+	}
+
+	public int getNbrTentativeRestant() {
+		return nbrTentativeRestant;
+	}
+
+	public void setNbrTentativeRestant(int nbrTentativeRestant) {
+		this.nbrTentativeRestant = nbrTentativeRestant;
+	}
+
+	public Date getDateBloquage() {
+		return dateBloquage;
+	}
+
+	public void setDateBloquage(Date dateBloquage) {
+		this.dateBloquage = dateBloquage;
+	}
+
+	public int getAnneeBac() {
+		return anneeBac;
+	}
+
+	public void setAnneeBac(int anneeBac) {
+		this.anneeBac = anneeBac;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof User)) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		Etudiant other = (Etudiant) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
 			return false;
-		Etudiant other = (Etudiant) obj;
-		if (cin == null) {
-			if (other.cin != null)
-				return false;
-		} else if (!cin.equals(other.cin))
-			return false;
-		if (cne == null) {
-			if (other.cne != null)
-				return false;
-		} else if (!cne.equals(other.cne))
-			return false;
-		if (dateNaissance == null) {
-			if (other.dateNaissance != null)
-				return false;
-		} else if (!dateNaissance.equals(other.dateNaissance))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (imageBac == null) {
-			if (other.imageBac != null)
-				return false;
-		} else if (!imageBac.equals(other.imageBac))
-			return false;
-		if (imageS1 == null) {
-			if (other.imageS1 != null)
-				return false;
-		} else if (!imageS1.equals(other.imageS1))
-			return false;
-		if (imageS2 == null) {
-			if (other.imageS2 != null)
-				return false;
-		} else if (!imageS2.equals(other.imageS2))
-			return false;
-		if (imageS3 == null) {
-			if (other.imageS3 != null)
-				return false;
-		} else if (!imageS3.equals(other.imageS3))
-			return false;
-		if (imageS4 == null) {
-			if (other.imageS4 != null)
-				return false;
-		} else if (!imageS4.equals(other.imageS4))
-			return false;
-		if (inscriptions == null) {
-			if (other.inscriptions != null)
-				return false;
-		} else if (!inscriptions.equals(other.inscriptions))
-			return false;
-		if (Double.doubleToLongBits(moyenneBac) != Double.doubleToLongBits(other.moyenneBac))
-			return false;
-		if (nom == null) {
-			if (other.nom != null)
-				return false;
-		} else if (!nom.equals(other.nom))
-			return false;
-		if (Double.doubleToLongBits(noteS1) != Double.doubleToLongBits(other.noteS1))
-			return false;
-		if (Double.doubleToLongBits(noteS2) != Double.doubleToLongBits(other.noteS2))
-			return false;
-		if (Double.doubleToLongBits(noteS3) != Double.doubleToLongBits(other.noteS3))
-			return false;
-		if (Double.doubleToLongBits(noteS4) != Double.doubleToLongBits(other.noteS4))
-			return false;
-		if (prenom == null) {
-			if (other.prenom != null)
-				return false;
-		} else if (!prenom.equals(other.prenom))
-			return false;
-		if (telephone == null) {
-			if (other.telephone != null)
-				return false;
-		} else if (!telephone.equals(other.telephone))
-			return false;
-		if (typeDiplome == null) {
-			if (other.typeDiplome != null)
-				return false;
-		} else if (!typeDiplome.equals(other.typeDiplome))
-			return false;
+		}
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "com.AgenceLocation.bean.User[ id=" + id + " ]";
+	}
 }

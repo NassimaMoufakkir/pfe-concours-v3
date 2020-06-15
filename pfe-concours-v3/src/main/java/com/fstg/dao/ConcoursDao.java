@@ -16,5 +16,6 @@ public interface ConcoursDao extends JpaRepository<Concours, Long> {
 
 	public int deleteByReference(String reference);
 	
+	public Concours findConcoursByConfigConcourssNoteMin(double noteMin);
 
 }

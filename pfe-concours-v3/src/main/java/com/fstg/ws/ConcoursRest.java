@@ -63,11 +63,17 @@ public class ConcoursRest {
 	@ApiOperation("Cette méthode permet de modifier un Concours")
 	@PutMapping("/id/{id}/reference/{reference}/annee/{annee}/dateOrale/{dateOrale}/dateEcrit/{dateEcrit}/nbreEtudiantAdmisOrale/{nbreEtudiantAdmisOrale}/nbreEtudiantAdmisEcrit/{nbreEtudiantAdmisEcrit}/nbreEtudiantAdmis/{nbreEtudiantAdmis}/description/{description}")
 	public Concours update(@PathVariable Long id, @PathVariable String reference, @PathVariable int annee,
-			@DateTimeFormat(pattern = "dd-MM-yyyy") Date dateOrale, @DateTimeFormat(pattern = "dd-MM-yyyy") Date dateEcrit, @PathVariable int nbreEtudiantAdmisOrale,
+			@DateTimeFormat(pattern = "yyyy-MM-d") Date dateOrale,
+			@DateTimeFormat(pattern = "yyyy-MM-d") Date dateEcrit, @PathVariable int nbreEtudiantAdmisOrale,
 			@PathVariable int nbreEtudiantAdmisEcrit, @PathVariable int nbreEtudiantAdmis,
 			@PathVariable String description) {
 		return concoursService.update(id, reference, annee, dateOrale, dateEcrit, nbreEtudiantAdmisOrale,
 				nbreEtudiantAdmisEcrit, nbreEtudiantAdmis, description);
+	}
+
+	@PutMapping("/noteMin/{noteMin}")
+	public Concours findConcoursByConfigConcourssNoteMin(@PathVariable double noteMin) {
+		return concoursService.findConcoursByConfigConcourssNoteMin(noteMin);
 	}
 
 }

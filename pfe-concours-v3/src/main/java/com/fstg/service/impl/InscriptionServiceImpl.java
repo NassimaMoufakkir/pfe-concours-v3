@@ -87,12 +87,17 @@ public class InscriptionServiceImpl implements InscriptionService {
 
 	@Override
 	public int save(Etudiant etudiant, List<Inscription> inscriptions) {
+		if(inscriptions==null) {
+			return -1;
+		}
 		for (Inscription inscription : inscriptions) {
-			Concours concours = concoursService.findByReference(inscription.getConcours().getReference());
-			if (concours != null) {
-				inscription.setConcours(concours);
-				inscription.setEtudiant(etudiant);
-				inscriptionDao.save(inscription);
+			if (inscription.getConcours() != null) {
+				Concours concours = concoursService.findByReference(inscription.getConcours().getReference());
+				if (concours != null) {
+					inscription.setConcours(concours);
+					inscription.setEtudiant(etudiant);
+					inscriptionDao.save(inscription);
+				}
 			}
 		}
 		return 1;
@@ -108,10 +113,15 @@ public class InscriptionServiceImpl implements InscriptionService {
 		return inscriptionDao.findByEtudiantCneAndConcoursReference(cne, reference);
 	}
 
-
 	@Override
 	@Transactional
 	public int deleteByConcoursReference(String reference) {
 		return inscriptionDao.deleteByConcoursReference(reference);
+	}
+	
+	@Override
+	@Transactional
+	public int deleteByEtudiantCne(String cne) {
+		return inscriptionDao.deleteByEtudiantCne(cne);
 	}
 }

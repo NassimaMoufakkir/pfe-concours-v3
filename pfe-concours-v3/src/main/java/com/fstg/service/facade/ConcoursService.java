@@ -20,4 +20,6 @@ public interface ConcoursService {
 	public Concours update(Long id, String reference, int annee, Date dateOrale, Date dateEcrit,
 			int nbreEtudiantAdmisOrale, int nbreEtudiantAdmisEcrit, int nbreEtudiantAdmis, String description);
 
+	public Concours findConcoursByConfigConcourssNoteMin(double noteMin);
+
 }

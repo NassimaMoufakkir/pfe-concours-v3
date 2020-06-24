@@ -168,6 +168,11 @@ public class EtudiantServiceImpl implements EtudiantService {
 		etudiant.setTelephone(etudiant2.getTelephone());
 		etudiant.setAnneeBac(etudiant2.getAnneeBac());
 		etudiant.setTypeDiplome(etudiant2.getTypeDiplome());
+		etudiant.setImageBac(etudiant2.getImageBac());
+		etudiant.setImageS1(etudiant2.getImageS1());
+		etudiant.setImageS2(etudiant2.getImageS2());
+		etudiant.setImageS3(etudiant2.getImageS3());
+		etudiant.setImageS4(etudiant2.getImageS4());
 		etudiant.setMoyenne((etudiant2.getNoteS1() + etudiant2.getNoteS2() + etudiant2.getNoteS3()) / 3);
 		inscriptionService.deleteByEtudiantCne(etudiant.getCne());
 		Etudiant updatedEtudiant = etudiantDao.save(etudiant);

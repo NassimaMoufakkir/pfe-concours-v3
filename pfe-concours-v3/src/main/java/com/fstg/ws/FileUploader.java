@@ -33,11 +33,11 @@ public class FileUploader {
 	@Autowired
 	public EtudiantService etudiantService;
 	// Path to save the file
-	private final Path rootLocationBac = Paths.get("C:/Users/hp/Desktop/files/scanns-baccalauréat");
-	private final Path rootLocationS1 = Paths.get("C:/Users/hp/Desktop/files/scanns-S1");
-	private final Path rootLocationS2 = Paths.get("C:/Users/hp/Desktop/files/scanns-S2");
-	private final Path rootLocationS3 = Paths.get("C:/Users/hp/Desktop/files/scanns-S3");
-	private final Path rootLocationS4 = Paths.get("C:/Users/hp/Desktop/files/scanns-S4");
+	private final Path rootLocationBac = Paths.get("C:/Users/hp/Desktop/scanns/scanns-baccalauréat");
+	private final Path rootLocationS1 = Paths.get("C:/Users/hp/Desktop/scanns/scanns-S1");
+	private final Path rootLocationS2 = Paths.get("C:/Users/hp/Desktop/scanns/scanns-S2");
+	private final Path rootLocationS3 = Paths.get("C:/Users/hp/Desktop/scanns/scanns-S3");
+	private final Path rootLocationS4 = Paths.get("C:/Users/hp/Desktop/scanns/scanns-S4");
 
 	@ApiOperation("Cette méthode de télécharger un fichier")
 	@PostMapping("/savefileBac/cne/{cne}")
